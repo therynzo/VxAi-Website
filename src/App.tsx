@@ -473,47 +473,41 @@ export default function App() {
             </div>
           </header>
 
-          {/* MOBILE DRAWER - NOW A BEAUTIFUL CENTRAL MODAL OVERLAY */}
+          {/* MOBILE DROPDOWN - SLEEK NORMAL FLOATING COLLAPSIBLE MENU */}
           <AnimatePresence>
             {mobileMenuOpen && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:hidden">
-                {/* Backdrop and blur */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+              <>
+                {/* Clean partial-screen backdrop that allows clicks to close the menu instantly */}
+                <div 
+                  className="fixed inset-x-0 bottom-0 top-[74px] z-45 bg-black/40 backdrop-blur-[2px] md:hidden"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="absolute inset-0 bg-zinc-950/80 backdrop-blur-xl cursor-pointer"
                 />
-                
-                {/* Centered navigation panel */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: 15 }}
-                  transition={{ type: "spring", duration: 0.4 }}
-                  className="relative w-full max-w-sm rounded-[24px] bg-zinc-900/90 border border-zinc-800 p-6 space-y-4 shadow-2xl z-10 hover:outline hover:outline-2 hover:outline-yellow-500/45 hover:outline-offset-4 hover:shadow-[0_0_25px_rgba(234,179,8,0.25)] transition-all duration-300"
-                >
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="absolute top-4 right-4 p-1.5 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-800 border border-zinc-800 transition-colors cursor-pointer"
-                    title="Close Menu"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
 
-                  <div className="flex flex-col items-center gap-1 text-center pb-3 border-b border-zinc-800/60 mb-2">
-                    <Logo size="sm" />
-                    <span className="text-xs font-black font-mono tracking-widest text-white mt-1">CODING AI CORE NAVIGATION</span>
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                  transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="fixed top-[78px] left-4 right-4 max-w-sm ml-auto z-50 rounded-2xl bg-zinc-950/95 backdrop-blur-2xl border border-white/[0.06] p-5 space-y-4 shadow-2xl md:hidden"
+                >
+                  <div className="flex items-center justify-between pb-3 border-b border-white/[0.04] mb-1">
+                    <span className="text-[10px] font-black font-mono tracking-widest text-zinc-400 uppercase">VxAi NAVIGATION</span>
+                    <button
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="p-1 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-850 cursor-pointer"
+                      title="Close"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
                   </div>
 
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     <button
                       onClick={() => {
                         navigateToPage('home');
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full text-center py-3 text-xs font-mono font-bold text-zinc-300 hover:text-yellow-400 uppercase tracking-widest block bg-zinc-950/80 border border-zinc-850 hover:border-yellow-500/30 rounded-xl transition-all duration-300 shadow-sm cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-xs font-mono font-medium text-zinc-300 hover:text-yellow-400 uppercase tracking-wider block bg-white/[0.01] hover:bg-white/[0.03] border border-white/[0.03] hover:border-yellow-500/30 rounded-xl transition-all"
                     >
                       HOME
                     </button>
@@ -522,7 +516,7 @@ export default function App() {
                         navigateToPage('categories');
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full text-center py-3 text-xs font-mono font-bold text-zinc-300 hover:text-yellow-400 uppercase tracking-widest block bg-zinc-950/80 border border-zinc-850 hover:border-yellow-500/30 rounded-xl transition-all duration-300 shadow-sm cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-xs font-mono font-medium text-zinc-300 hover:text-yellow-400 uppercase tracking-wider block bg-white/[0.01] hover:bg-white/[0.03] border border-white/[0.03] hover:border-yellow-500/30 rounded-xl transition-all"
                     >
                       ABOUT
                     </button>
@@ -531,7 +525,7 @@ export default function App() {
                         navigateToPage('chat');
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full text-center py-3 text-xs font-mono font-bold text-zinc-300 hover:text-yellow-400 uppercase tracking-widest block bg-zinc-950/80 border border-zinc-850 hover:border-yellow-500/30 rounded-xl transition-all duration-300 shadow-sm cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-xs font-mono font-medium text-zinc-300 hover:text-yellow-400 uppercase tracking-wider block bg-white/[0.01] hover:bg-white/[0.03] border border-white/[0.03] hover:border-yellow-500/30 rounded-xl transition-all"
                     >
                       CHAT
                     </button>
@@ -540,7 +534,7 @@ export default function App() {
                         navigateToPage('pricing');
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full text-center py-3 text-xs font-mono font-bold text-zinc-300 hover:text-yellow-400 uppercase tracking-widest block bg-zinc-950/80 border border-zinc-850 hover:border-yellow-500/30 rounded-xl transition-all duration-300 shadow-sm cursor-pointer"
+                      className="w-full text-left px-4 py-2.5 text-xs font-mono font-medium text-zinc-300 hover:text-yellow-400 uppercase tracking-wider block bg-white/[0.01] hover:bg-white/[0.03] border border-white/[0.03] hover:border-yellow-500/30 rounded-xl transition-all"
                     >
                       PRICING
                     </button>
@@ -550,31 +544,33 @@ export default function App() {
                           setMobileMenuOpen(false);
                           setIsAdminDashboardOpen(true);
                         }}
-                        className="w-full text-center py-3 text-xs font-mono font-bold text-yellow-400 uppercase tracking-widest block bg-yellow-500/10 border border-yellow-500/20 hover:border-yellow-400 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                        className="w-full text-left px-4 py-2.5 text-xs font-mono font-bold text-yellow-400 uppercase tracking-wider bg-yellow-500/5 hover:bg-yellow-500/10 border border-yellow-500/20 hover:border-yellow-400 rounded-xl transition-all flex items-center gap-2"
                       >
-                        <Menu className="h-4 w-4 text-yellow-500" />
+                        <Menu className="h-3.5 w-3.5 text-yellow-500" />
                         Admin Dashboard
                       </button>
                     )}
                   </div>
 
                   {currentUser ? (
-                    <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-900 text-center space-y-2 mt-4 shadow-inner">
-                      <p className="text-xs font-bold text-white flex items-center justify-center gap-1.5">
-                        <User className="h-3.5 w-3.5 text-yellow-400" />
-                        {currentUser.username}
-                      </p>
-                      <p className="text-[10px] font-mono text-zinc-400">
-                        Tokens remaining: <span className="text-yellow-400 font-bold">{currentUser.tokens.toFixed(2)}</span>
-                      </p>
+                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-medium text-zinc-350 flex items-center gap-1.5">
+                          <User className="h-3.5 w-3.5 text-yellow-400" />
+                          {currentUser.username}
+                        </span>
+                        <span className="text-[10px] font-mono text-zinc-500">
+                          Tokens: <span className="text-yellow-400 font-bold">{currentUser.tokens.toFixed(2)}</span>
+                        </span>
+                      </div>
                       <button
                         onClick={() => {
                           handleSignOut();
                           setMobileMenuOpen(false);
                         }}
-                        className="w-full py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-mono text-center text-xs rounded-xl border border-red-500/10 transition-all font-bold cursor-pointer"
+                        className="w-full py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 font-mono text-center text-[11px] rounded-xl border border-red-500/10 transition-all font-bold"
                       >
-                        SIGN OUT SESSION
+                        SIGN OUT
                       </button>
                     </div>
                   ) : (
@@ -583,13 +579,13 @@ export default function App() {
                         setMobileMenuOpen(false);
                         navigateToPage('auth');
                       }}
-                      className="w-full text-center py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 hover:brightness-110 text-black text-xs font-bold font-mono uppercase tracking-wider transition-all mt-4 cursor-pointer shadow-md"
+                      className="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-yellow-400 to-amber-500 hover:brightness-110 text-black text-xs font-bold font-mono uppercase tracking-wider transition-all"
                     >
                       SIGN IN / REGISTER
                     </button>
                   )}
                 </motion.div>
-              </div>
+              </>
             )}
           </AnimatePresence>
         </>
@@ -1240,12 +1236,12 @@ export default function App() {
           <div className="flex items-center gap-3 flex-shrink-0">
             <Logo size="sm" interactive={false} />
             <div className="flex flex-col text-left">
-              <span className="font-bold text-white font-mono uppercase tracking-wider text-xs">CODING AI</span>
+              <span className="font-bold text-white font-mono uppercase tracking-wider text-xs">VxAi</span>
             </div>
           </div>
 
           <div className="text-center md:text-right font-mono text-[11px] text-zinc-550 space-y-1.5 flex-shrink-0 flex flex-col items-center md:items-end justify-center">
-            <p>© 2026 CODING AI Generative Networks. All Rights Reserved.</p>
+            <p>© 2026 VxAi Generative Networks. All Rights Reserved.</p>
             <p className="text-[10px] text-yellow-400/80 font-mono font-bold uppercase tracking-widest mt-1">
               Made by TheRynzo
             </p>

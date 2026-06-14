@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check, ShieldCheck, Sparkles, Building, Zap, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { Plan } from '../types';
 
 interface PricingProps {
@@ -68,9 +69,23 @@ export default function Pricing({ onSelectPlan }: PricingProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {PRESET_PLANS.map((plan) => (
-          <div
+          <motion.div
             key={plan.id}
-            className={`relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 hover:scale-[1.03] hover:outline hover:outline-2 hover:outline-yellow-500/40 hover:outline-offset-4 hover:shadow-[0_0_25px_rgba(234,179,8,0.25)] ${
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ 
+              scale: 1.03, 
+              borderColor: '#eab308',
+              boxShadow: "0 0 35px rgba(234, 179, 8, 0.35)"
+            }}
+            whileTap={{ 
+              scale: 0.98, 
+              borderColor: '#f59e0b',
+              boxShadow: "0 0 60px rgba(234, 179, 8, 0.85)"
+            }}
+            transition={{ type: "spring", stiffness: 130, damping: 14 }}
+            className={`relative flex flex-col justify-between rounded-2xl border p-6 transition-all duration-300 ${
               plan.popular 
                 ? 'bg-gradient-to-b from-zinc-900 via-zinc-950 to-zinc-950 shadow-yellow-500/10' 
                 : 'bg-zinc-950/80'
@@ -172,7 +187,7 @@ export default function Pricing({ onSelectPlan }: PricingProps) {
                 {plan.id === 'free' ? 'No Credit Card required' : 'Cancel anytime. Instant delivery.'}
               </span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

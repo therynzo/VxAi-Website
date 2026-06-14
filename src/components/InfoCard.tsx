@@ -24,17 +24,21 @@ export default function InfoCard({ card }: InfoCardProps) {
   return (
     <div className="group h-76 w-full [perspective:1200px]" id={`info-card-${card.id}`}>
       <motion.div
-        className="relative h-full w-full rounded-2xl transition-all duration-300 [transform-style:preserve-3d] cursor-pointer hover:outline hover:outline-2 hover:outline-yellow-500/40 hover:outline-offset-4"
+        className="relative h-full w-full rounded-2xl transition-all duration-300 [transform-style:preserve-3d] cursor-pointer"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         onClick={() => setIsFlipped(!isFlipped)}
         whileHover={{
           scale: 1.03,
-          boxShadow: "0px 0px 25px rgba(234, 179, 8, 0.25)",
+          boxShadow: "0px 0px 30px rgba(234, 179, 8, 0.35)",
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        whileTap={{
+          scale: 0.97,
+          boxShadow: "0px 0px 45px rgba(234, 179, 8, 0.75)",
+        }}
+        transition={{ type: "spring", stiffness: 180, damping: 14 }}
       >
         {/* FRONT SIDE */}
-        <div className="absolute inset-0 h-full w-full rounded-2xl border border-yellow-500/20 bg-zinc-950 p-6 [backface-visibility:hidden] flex flex-col justify-between overflow-hidden">
+        <div className="absolute inset-0 h-full w-full rounded-2xl border border-yellow-500/20 hover:border-yellow-500/80 bg-zinc-950 p-6 [backface-visibility:hidden] flex flex-col justify-between overflow-hidden transition-colors duration-350">
           {/* Top light beam glow effect */}
           <div className="absolute -top-16 -left-16 h-32 w-32 rounded-full bg-yellow-500/10 blur-3xl group-hover:bg-yellow-500/20 transition-all duration-500" />
           
