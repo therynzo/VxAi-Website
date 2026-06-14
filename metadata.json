@@ -1,0 +1,6 @@
+{
+  "name": "CODING AI",
+  "description": "CODING AI - Premium AI platform featuring chat playgrounds, file/image analysis, dynamic custom key management, and elegant interactive designs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
